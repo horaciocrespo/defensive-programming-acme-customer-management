@@ -1,4 +1,6 @@
-﻿namespace ACM.BL
+﻿using System;
+
+namespace ACM.BL
 {
     /// <summary>
     /// Manages a single customer.
@@ -21,6 +23,11 @@
             // Ensure a valid email address is provided.
             // If not,
             // request an email address for the user.
+        }
+
+        public decimal CalculatePercentOfGoalSteps(string goalSteps, string actualSteps)
+        {
+            return (Convert.ToDecimal(actualSteps) / Convert.ToDecimal(goalSteps)) * 100;
         }
     }
 }

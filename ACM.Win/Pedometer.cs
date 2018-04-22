@@ -21,7 +21,10 @@ namespace ACM.Win
   
         private void CalculateButton_Click(object sender, EventArgs e)
         {
+            var customer = new Customer();
+            var result = customer.CalculatePercentOfGoalSteps(this.GoalTextBox.Text, this.StepsTextBox.Text);
 
+            this.ResultLabel.Text = $@"You reached {result} % of your goal!";
         }
     }
 }
