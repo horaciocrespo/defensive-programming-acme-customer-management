@@ -47,13 +47,18 @@ namespace ACM.BL
             if (!decimal.TryParse(goalSteps, out var goalStepCount))
                 throw new ArgumentException("Goal must be numeric", nameof(goalSteps));
 
-            if (!decimal.TryParse(goalSteps, out var actualStepsCount))
+            if (!decimal.TryParse(goalSteps, out var actualStepCount))
                 throw new ArgumentException("Actual steps must be numeric", nameof(actualSteps));
 
-            if (goalStepCount <= 0)
-                throw new ArgumentException("Goal must be greater than 0", nameof(goalSteps));
+            return CalculatePercentOfGoalSteps(goalStepCount, actualStepCount);
+        }
 
-            return (Convert.ToDecimal(actualStepsCount) / Convert.ToDecimal(goalSteps)) * 100;
+        public decimal CalculatePercentOfGoalSteps(decimal goalStepCount, decimal actualStepCount)
+        {
+            if (goalStepCount <= 0)
+                throw new ArgumentException("Goal must be greater than 0", "goalSteps");
+
+            return (actualStepCount / goalStepCount) * 100;
         }
     }
 }
