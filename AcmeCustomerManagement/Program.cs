@@ -15,9 +15,6 @@ namespace AcmeCustomerManagement
             var customer = new Customer();
             // populate the customer instance
 
-            var customerRepository = new CustomerRepository();
-            customerRepository.Add(customer);
-
             var order = new Order();
             // populate the order instance
 
@@ -28,22 +25,8 @@ namespace AcmeCustomerManagement
             var payment = new Payment();
             // populate the payment info from the UI
 
-            var orderRepository = new OrderRepository();
-            orderRepository.Add(order);
-
-            var inventoryRepository = new InventoryRepository();
-            inventoryRepository.OrderItems(order, allowSplitOrders);
-
-            payment.ProcessPayment();
-
-            if (emailReceipt)
-            {
-                customer.ValidateEmail();
-                customerRepository.Update();
-
-                var emailLibrary = new EmailLibrary();
-                emailLibrary.SendEmail(customer.EmailAddress, "Here is your receipt");
-            }
+            var orderController = new OrderController();
+            orderController.PlaceOrder(customer, order, payment, allowSplitOrders, emailReceipt);
         }
     }
 }
