@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcmeCustomerManagement", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.BL", "ACM.BL\ACM.BL.csproj", "{8F3F2465-A2C0-4E15-936D-B3C737330267}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common", "Core.Common\Core.Common.csproj", "{5C6398E2-2E8C-441F-A47E-B07837EA89C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8F3F2465-A2C0-4E15-936D-B3C737330267}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F3F2465-A2C0-4E15-936D-B3C737330267}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F3F2465-A2C0-4E15-936D-B3C737330267}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C6398E2-2E8C-441F-A47E-B07837EA89C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C6398E2-2E8C-441F-A47E-B07837EA89C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C6398E2-2E8C-441F-A47E-B07837EA89C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C6398E2-2E8C-441F-A47E-B07837EA89C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
