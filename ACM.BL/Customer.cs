@@ -29,11 +29,12 @@ namespace ACM.BL
         {
             decimal result = 0;
 
-            var goalStepCount = Convert.ToDecimal(goalSteps);
+            decimal.TryParse(goalSteps, out var goalStepCount);
+            decimal.TryParse(goalSteps, out var actualStepsCount);
 
             if (goalStepCount > 0)
             {
-                result = (Convert.ToDecimal(actualSteps) / Convert.ToDecimal(goalSteps)) * 100;
+                result = (Convert.ToDecimal(actualStepsCount) / Convert.ToDecimal(goalSteps)) * 100;
             }
 
             return result;
