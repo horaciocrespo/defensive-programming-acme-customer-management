@@ -45,10 +45,10 @@ namespace ACM.BL
                 throw new ArgumentException("Actual steps count must be entered", nameof(actualSteps));
 
             if (!decimal.TryParse(goalSteps, out var goalStepCount))
-                throw new ArgumentException("Goal must be numeric", nameof(goalSteps));
+                throw new ArgumentException("Goal must be numeric");
 
-            if (!decimal.TryParse(goalSteps, out var actualStepCount))
-                throw new ArgumentException("Actual steps must be numeric", nameof(actualSteps));
+            if (!decimal.TryParse(actualSteps, out var actualStepCount))
+                throw new ArgumentException("Actual steps must be numeric");
 
             return CalculatePercentOfGoalSteps(goalStepCount, actualStepCount);
         }
