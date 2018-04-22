@@ -25,19 +25,30 @@ namespace ACM.BL
             // request an email address for the user.
         }
 
+        /// <summary>
+        /// Calculates the percent of the step goal reached.
+        /// </summary>
+        /// <param name="goalSteps"></param>
+        /// <param name="actualSteps"></param>
+        /// <returns></returns>
         public decimal CalculatePercentOfGoalSteps(string goalSteps, string actualSteps)
         {
-            decimal result = 0;
+            if (string.IsNullOrWhiteSpace(goalSteps))
+                throw new ArgumentException("Goal must be entered", nameof(goalSteps));
 
-            decimal.TryParse(goalSteps, out var goalStepCount);
-            decimal.TryParse(goalSteps, out var actualStepsCount);
+            if (string.IsNullOrWhiteSpace(actualSteps))
+                throw new ArgumentException("Actual steps count must be entered", nameof(actualSteps));
 
-            if (goalStepCount > 0)
-            {
-                result = (Convert.ToDecimal(actualStepsCount) / Convert.ToDecimal(goalSteps)) * 100;
-            }
+            if (!decimal.TryParse(goalSteps, out var goalStepCount))
+                throw new ArgumentException("Goal must be numeric", nameof(goalSteps));
 
-            return result;
+            if (!decimal.TryParse(goalSteps, out var actualStepsCount))
+                throw new ArgumentException("Actual steps must be numeric", nameof(actualSteps));
+
+            if (goalStepCount <= 0)
+                throw new ArgumentException("Goal must be greater than 0", nameof(goalSteps));
+
+            return (Convert.ToDecimal(actualStepsCount) / Convert.ToDecimal(goalSteps)) * 100;
         }
     }
 }
