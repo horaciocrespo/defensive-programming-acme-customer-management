@@ -15,13 +15,16 @@ namespace ACM.BL
 
         public string LastName { get; set; }
 
-        public bool ValidateEmail()
+        // option 1: Return a value -> bool
+        // option 2: Return void and throw exceptions. Note that we're throwing ArgumenExceptions
+        // despite the fact that this method does not receive arguments, this indicates
+        // that exceptions are not really meant to handle validation, they are meant
+        // to handle exceptional conditions and failure reporting.
+        public void ValidateEmail()
         {
-            var valid = true;
-
             if (string.IsNullOrWhiteSpace(this.EmailAddress))
             {
-                valid = false;
+                throw new ArgumentException("Email address is null");
             }
 
             var isValidFormat = true;
@@ -30,7 +33,7 @@ namespace ACM.BL
             // using a regular expression.
             if (!isValidFormat)
             {
-                valid = false;
+                throw new ArgumentException("Email address is not in a correct format");
             }
 
             var isRealDomain = true;
@@ -38,10 +41,8 @@ namespace ACM.BL
             // code here that confirms whether the domain exists.
             if (!isRealDomain)
             {
-                valid = false;
+                throw new ArgumentException("Email address does not include a valid domain");
             }
-
-            return valid;
         }
 
         /// <summary>
