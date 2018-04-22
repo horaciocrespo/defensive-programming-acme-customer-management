@@ -20,6 +20,8 @@ namespace ACM.BL
         // despite the fact that this method does not receive arguments, this indicates
         // that exceptions are not really meant to handle validation, they are meant
         // to handle exceptional conditions and failure reporting.
+        // option 3: Returning a boolean and receive a message parameter as ref.
+        // option 4: Return a tuple.
         public Tuple<bool, string> ValidateEmail()
         {
             Tuple<bool, string> result = Tuple.Create(true, "");
