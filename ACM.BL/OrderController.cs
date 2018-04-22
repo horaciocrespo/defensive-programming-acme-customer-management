@@ -49,12 +49,12 @@ namespace ACM.BL
 
             if (emailReceipt)
             {
-                string message = String.Empty;
+                // Using tuples is a nice way to be able to return multiple values
+                // but is clumpsy and does not provide a lot of information, it's just
+                // Item1 and Item2.
+                var result = customer.ValidateEmail();
 
-                // ref and out parameters are considered code smells because
-                // they are not intuitive and difficult the readability of the code.
-                var isValid = customer.ValidateEmail(ref message);
-                if (isValid)
+                if (result.Item1)
                 {
                     CustomerRepository.Update();
 

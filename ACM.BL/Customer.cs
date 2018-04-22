@@ -20,17 +20,16 @@ namespace ACM.BL
         // despite the fact that this method does not receive arguments, this indicates
         // that exceptions are not really meant to handle validation, they are meant
         // to handle exceptional conditions and failure reporting.
-        public bool ValidateEmail(ref string message)
+        public Tuple<bool, string> ValidateEmail()
         {
-            var valid = true;
+            Tuple<bool, string> result = Tuple.Create(true, "");
 
             if (string.IsNullOrWhiteSpace(this.EmailAddress))
             {
-                valid = false;
-                message = "Email address is null";
+                result = Tuple.Create(false, "Email address is null");
             }
 
-            if (valid)
+            if (result.Item1)
             {
                 var isValidFormat = true;
 
@@ -38,24 +37,22 @@ namespace ACM.BL
                 // using a regular expression.
                 if (!isValidFormat)
                 {
-                    valid = false;
-                    message = "Email address is not in a correct format";
+                    result = Tuple.Create(false, "Email address is not in a correct format");
                 }
             }
 
-            if (valid)
+            if (result.Item1)
             {
                 var isRealDomain = true;
 
                 // code here that confirms whether the domain exists.
                 if (!isRealDomain)
                 {
-                    valid = false;
-                    message = "Email address does not include a valid domain";
+                    result = Tuple.Create(false, "Email address does not include a valid domain");
                 }
             }
 
-            return valid;
+            return result;
         }
 
         /// <summary>
