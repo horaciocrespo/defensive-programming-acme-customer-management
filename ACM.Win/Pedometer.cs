@@ -18,7 +18,7 @@ namespace ACM.Win
             InitializeComponent();
         }
 
-  
+        // Try setting "Step Goal for Today" to 0 -> DivideByZeroException
         private void CalculateButton_Click(object sender, EventArgs e)
         {
             var customer = new Customer();

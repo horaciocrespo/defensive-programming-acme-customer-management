@@ -27,7 +27,16 @@ namespace ACM.BL
 
         public decimal CalculatePercentOfGoalSteps(string goalSteps, string actualSteps)
         {
-            return (Convert.ToDecimal(actualSteps) / Convert.ToDecimal(goalSteps)) * 100;
+            decimal result = 0;
+
+            var goalStepCount = Convert.ToDecimal(goalSteps);
+
+            if (goalStepCount > 0)
+            {
+                result = (Convert.ToDecimal(actualSteps) / Convert.ToDecimal(goalSteps)) * 100;
+            }
+
+            return result;
         }
     }
 }
