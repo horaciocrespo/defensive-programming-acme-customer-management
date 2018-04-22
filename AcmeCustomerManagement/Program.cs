@@ -12,6 +12,11 @@ namespace AcmeCustomerManagement
     {
         static void Main(string[] args)
         {
+            PlaceOrder();
+        }
+
+        public static void PlaceOrder()
+        {
             var customer = new Customer();
             // populate the customer instance
 
