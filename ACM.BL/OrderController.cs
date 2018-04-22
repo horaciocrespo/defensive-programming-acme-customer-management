@@ -15,6 +15,22 @@ namespace ACM.BL
     /// nor does it have any error or exception handling. (@todo)
     public class OrderController
     {
+        private CustomerRepository CustomerRepository { get; }
+
+        private OrderRepository OrderRepository { get; }
+
+        private InventoryRepository InventoryRepository { get; }
+
+        private EmailLibrary EmailLibrary { get; }
+
+        public OrderController()
+        {
+            CustomerRepository = new CustomerRepository();
+            OrderRepository = new OrderRepository();
+            InventoryRepository = new InventoryRepository();
+            EmailLibrary = new EmailLibrary();
+        }
+
         // flags usually go at the end
         public void PlaceOrder(Customer customer,
                                 Order order,
@@ -22,24 +38,20 @@ namespace ACM.BL
                                 bool allowSplitOrders,
                                 bool emailReceipt)
         {
-            var customerRepository = new CustomerRepository();
-            customerRepository.Add(customer);
-
-            var orderRepository = new OrderRepository();
-            orderRepository.Add(order);
-
-            var inventoryRepository = new InventoryRepository();
-            inventoryRepository.OrderItems(order, allowSplitOrders);
+            CustomerRepository.Add(customer);
+            
+            OrderRepository.Add(order);
+            
+            InventoryRepository.OrderItems(order, allowSplitOrders);
 
             payment.ProcessPayment();
 
             if (emailReceipt)
             {
                 customer.ValidateEmail();
-                customerRepository.Update();
-
-                var emailLibrary = new EmailLibrary();
-                emailLibrary.SendEmail(customer.EmailAddress, "Here is your receipt");
+                CustomerRepository.Update();
+                
+                EmailLibrary.SendEmail(customer.EmailAddress, "Here is your receipt");
             }
         }
     }
