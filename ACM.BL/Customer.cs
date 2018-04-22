@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Common;
 
 namespace ACM.BL
 {
@@ -22,16 +23,18 @@ namespace ACM.BL
         // to handle exceptional conditions and failure reporting.
         // option 3: Returning a boolean and receive a message parameter as ref.
         // option 4: Return a tuple.
-        public Tuple<bool, string> ValidateEmail()
+        // option 5: Return a new object. This is better than the previous ones.
+        public OperationResult ValidateEmail()
         {
-            Tuple<bool, string> result = Tuple.Create(true, "");
+            var operationResult = new OperationResult();
 
             if (string.IsNullOrWhiteSpace(this.EmailAddress))
             {
-                result = Tuple.Create(false, "Email address is null");
+                operationResult.Success = false;
+                operationResult.AddMessage("Email Address is null");
             }
 
-            if (result.Item1)
+            if (operationResult.Success)
             {
                 var isValidFormat = true;
 
@@ -39,22 +42,24 @@ namespace ACM.BL
                 // using a regular expression.
                 if (!isValidFormat)
                 {
-                    result = Tuple.Create(false, "Email address is not in a correct format");
+                    operationResult.Success = false;
+                    operationResult.AddMessage("Email address is not in a correct format");
                 }
             }
 
-            if (result.Item1)
+            if (operationResult.Success)
             {
                 var isRealDomain = true;
 
                 // code here that confirms whether the domain exists.
                 if (!isRealDomain)
                 {
-                    result = Tuple.Create(false, "Email address does not include a valid domain");
+                    operationResult.Success = false;
+                    operationResult.AddMessage("Email address does not include a valid domain");
                 }
             }
 
-            return result;
+            return operationResult;
         }
 
         /// <summary>

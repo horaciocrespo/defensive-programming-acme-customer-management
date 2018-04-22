@@ -49,12 +49,10 @@ namespace ACM.BL
 
             if (emailReceipt)
             {
-                // Using tuples is a nice way to be able to return multiple values
-                // but is clumpsy and does not provide a lot of information, it's just
-                // Item1 and Item2.
+                // returnin an object makes the code more readable
                 var result = customer.ValidateEmail();
 
-                if (result.Item1)
+                if (result.Success)
                 {
                     CustomerRepository.Update();
 
