@@ -20,29 +20,42 @@ namespace ACM.BL
         // despite the fact that this method does not receive arguments, this indicates
         // that exceptions are not really meant to handle validation, they are meant
         // to handle exceptional conditions and failure reporting.
-        public void ValidateEmail()
+        public bool ValidateEmail(ref string message)
         {
+            var valid = true;
+
             if (string.IsNullOrWhiteSpace(this.EmailAddress))
             {
-                throw new ArgumentException("Email address is null");
+                valid = false;
+                message = "Email address is null";
             }
 
-            var isValidFormat = true;
-
-            // code here that validates the format of the email
-            // using a regular expression.
-            if (!isValidFormat)
+            if (valid)
             {
-                throw new ArgumentException("Email address is not in a correct format");
+                var isValidFormat = true;
+
+                // code here that validates the format of the email
+                // using a regular expression.
+                if (!isValidFormat)
+                {
+                    valid = false;
+                    message = "Email address is not in a correct format";
+                }
             }
 
-            var isRealDomain = true;
-
-            // code here that confirms whether the domain exists.
-            if (!isRealDomain)
+            if (valid)
             {
-                throw new ArgumentException("Email address does not include a valid domain");
+                var isRealDomain = true;
+
+                // code here that confirms whether the domain exists.
+                if (!isRealDomain)
+                {
+                    valid = false;
+                    message = "Email address does not include a valid domain";
+                }
             }
+
+            return valid;
         }
 
         /// <summary>

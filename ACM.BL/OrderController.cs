@@ -1,4 +1,5 @@
-﻿using Core.Common;
+﻿using System;
+using Core.Common;
 
 namespace ACM.BL
 {
@@ -48,7 +49,12 @@ namespace ACM.BL
 
             if (emailReceipt)
             {
-                if (customer.ValidateEmail())
+                string message = String.Empty;
+
+                // ref and out parameters are considered code smells because
+                // they are not intuitive and difficult the readability of the code.
+                var isValid = customer.ValidateEmail(ref message);
+                if (isValid)
                 {
                     CustomerRepository.Update();
 
