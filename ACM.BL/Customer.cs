@@ -27,6 +27,11 @@ namespace ACM.BL
 
         /// <summary>
         /// Calculates the percent of the step goal reached.
+        /// Using the defensive programming fail fast method. Now our method is easier
+        /// to test because we now each of the conditions that we need to test, however
+        /// is important to note that this method has gone from one line of code
+        /// to eleven lines of code. That's why sometimes defensive coding is considered
+        /// a code smell because it increases the lines of code. (@todo refactor code smell)
         /// </summary>
         /// <param name="goalSteps"></param>
         /// <param name="actualSteps"></param>
