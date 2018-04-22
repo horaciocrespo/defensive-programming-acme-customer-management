@@ -15,14 +15,33 @@ namespace ACM.BL
 
         public string LastName { get; set; }
 
-        public void ValidateEmail()
+        public bool ValidateEmail()
         {
-            // -- Send an email receipt --
-            // If the user requested a receipt
-            // Get the customer data
-            // Ensure a valid email address is provided.
-            // If not,
-            // request an email address for the user.
+            var valid = true;
+
+            if (string.IsNullOrWhiteSpace(this.EmailAddress))
+            {
+                valid = false;
+            }
+
+            var isValidFormat = true;
+
+            // code here that validates the format of the email
+            // using a regular expression.
+            if (!isValidFormat)
+            {
+                valid = false;
+            }
+
+            var isRealDomain = true;
+
+            // code here that confirms whether the domain exists.
+            if (!isRealDomain)
+            {
+                valid = false;
+            }
+
+            return valid;
         }
 
         /// <summary>

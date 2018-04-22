@@ -48,10 +48,12 @@ namespace ACM.BL
 
             if (emailReceipt)
             {
-                customer.ValidateEmail();
-                CustomerRepository.Update();
-                
-                EmailLibrary.SendEmail(customer.EmailAddress, "Here is your receipt");
+                if (customer.ValidateEmail())
+                {
+                    CustomerRepository.Update();
+
+                    EmailLibrary.SendEmail(customer.EmailAddress, "Here is your receipt");
+                }
             }
         }
     }
